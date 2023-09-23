@@ -14,7 +14,11 @@
 <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-
+    
+<form method="POST" action="index.php">
+                                             <input type="text" name="task" class="task input">
+                                             <button type="submit" name="submit">Add Task</button>
+                                            </form> 
 <?php
                                             require_once 'db.php';
                                             if(isset($_POST['task']))
@@ -45,11 +49,7 @@
                                                 $data = $pdo->query($change)->fetchAll(PDO::FETCH_BOTH);
                                                 echo "<meta http-equiv='refresh' content='0;url=https://time.hubs365it.com/pic.php'>";
                                             }
-                    ?>
 
-
-<?php
-                                            require_once 'db.php';
                                             try {
                                                 $query = "SELECT * FROM modt ORDER BY RAND() LIMIT 1";
                                                 $stmt = $pdo->query($query);
@@ -62,47 +62,38 @@
                                             } catch (PDOException $e) {
                                                 die("Error: " . $e->getMessage());
                                             }
-                                    ?>
 
+                                            $query = "select * from todos where status = 1";
+                                            $data = $pdo->query($query)->fetchAll(PDO::FETCH_BOTH);
 
-<?php
-                                            require_once 'db.php';
-  $query = "select * from todos where status = 1";
-  $data = $pdo->query($query)->fetchAll(PDO::FETCH_BOTH);
+                                            echo "
+                                            <div><table class=\"demoTable\">
+                                            <thead>
+                                            <tr>
+                                            <th>Task ID</th>
+                                            <th>Task</th>
+                                            <th>actions</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            ";
 
-  echo "
-  <div><table class=\"demoTable\">
-   <thead>
-    <tr>
-     <th>Task ID</th>
-     <th>Task</th>
-     <th>actions</th>
-    </tr>
-   </thead>
-   <tbody>
-  ";
+                                            foreach($data as $row){
+                                            echo "
+                                            <tr>
+                                            <td>{$row['id']}</td>
+                                            <td>{$row['todos']}</td>
+                                            <td>
+                                            <form method='POST' action='index.php'>
+                                            <input type='hidden' name='task_id_del' value='{$row['id']}' />
+                                            <button type='submit' name='delete_task'>delete</button>
+                                            </form>
+                                            </td>
+                                            </tr>
+                                            ";
+                                            }
+                                            echo "</tbody></table></div>";
 
-foreach($data as $row){
-echo "
-<tr>
- <td>{$row['id']}</td>
- <td>{$row['todos']}</td>
- <td>
- <form method='POST' action='index.php'>
- <input type='hidden' name='task_id_del' value='{$row['id']}' />
- <button type='submit' name='delete_task'>delete</button>
- </form>
- </td>
-</tr>
-";
-}
-  echo "</tbody></table></div>";
-?>
-
-
-
-<?php
-                                            require_once 'db.php';
                                             $query = "select * from todos where status = 0";
                                             $data = $pdo->query($query)->fetchAll(PDO::FETCH_BOTH);
                                             echo "
