@@ -47,7 +47,7 @@
                                                 $task_id_done = $_POST['task_id_done'];
                                                 $change = "UPDATE `todos` SET `status` = b'1' WHERE `todos`.`id` = $task_id_done;";
                                                 $data = $pdo->query($change)->fetchAll(PDO::FETCH_BOTH);
-                                                echo "<meta http-equiv='refresh' content='0;url=https://time.hubs365it.com/pic.php'>";
+                                                echo "<meta http-equiv='refresh' content='0'>";
                                             }
 
                                             try {
