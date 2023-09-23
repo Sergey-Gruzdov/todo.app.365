@@ -1,20 +1,4 @@
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-    <title>todo.365</title>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <link href="https://fonts.googleapis.com/css?display=swap&family=Shrikhand:400,400italic" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="theme-color" content="#ffffff">
-</head>
-<body>
-
+//
 <?php
                                             require_once 'db.php';
                                             if(isset($_POST['task']))
@@ -46,7 +30,7 @@
                                                 echo "<meta http-equiv='refresh' content='0;url=https://time.hubs365it.com/pic.php'>";
                                             }
                     ?>
-
+//
 
 <?php
                                             require_once 'db.php';
@@ -63,7 +47,7 @@
                                                 die("Error: " . $e->getMessage());
                                             }
                                     ?>
-
+//
 
 <?php
                                             require_once 'db.php';
@@ -99,7 +83,7 @@ echo "
   echo "</tbody></table></div>";
 ?>
 
-
+//
 
 <?php
                                             require_once 'db.php';
@@ -143,5 +127,3 @@ echo "
                                             </div>
                                             ";
                                             ?>
-</body>
-</html>
