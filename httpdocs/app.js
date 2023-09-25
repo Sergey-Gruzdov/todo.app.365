@@ -63,10 +63,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Fetch tasks when the page loads
-    fetchTasks();
-});
-
 // Function to delete a task
 function deleteTask(taskId) {
     fetch(`/tasks/${taskId}`, { method: "DELETE" })
@@ -81,4 +77,10 @@ function deleteTask(taskId) {
             }
         });
 }
+
+    // Fetch tasks when the page loads
+    fetchTasks();
+});
+
+
 
