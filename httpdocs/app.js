@@ -1,51 +1,38 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-}
+document.addEventListener("DOMContentLoaded", function () {
+    const taskInput = document.getElementById("taskInput");
+    const addTaskButton = document.getElementById("addTask");
+    const taskList = document.getElementById("taskList");
 
-h1 {
-    color: #333;
-}
+    // Function to add a new task
+    function addTask() {
+        const taskText = taskInput.value.trim();
+        if (taskText !== "") {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <span>${taskText}</span>
+                <button class="delete">Delete</button>
+            `;
+            taskList.appendChild(li);
+            taskInput.value = "";
+            attachDeleteListener(li);
+        }
+    }
 
-.input-container {
-    margin: 20px 0;
-}
+    // Function to attach delete listener to a task
+    function attachDeleteListener(li) {
+        const deleteButton = li.querySelector(".delete");
+        deleteButton.addEventListener("click", function () {
+            taskList.removeChild(li);
+        });
+    }
 
-input[type="text"] {
-    padding: 10px;
-    width: 60%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
+    // Event listener for adding a task
+    addTaskButton.addEventListener("click", addTask);
 
-button {
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border: 1px solid #ccc;
-    margin: 5px 0;
-    border-radius: 5px;
-}
-
-li button {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+    // Event listener for adding a task on Enter key press
+    taskInput.addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+            addTask();
+        }
+    });
+});
