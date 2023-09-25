@@ -67,7 +67,8 @@ document.addEventListener("DOMContentLoaded", function () {
 function deleteTask(taskId) {
     fetch(`/tasks/${taskId}`, { method: "DELETE" })
         .then((response) => {
-            if (response.ok) {
+            if (response.status === 200) {
+                // Remove the task from the UI
                 const taskElement = document.querySelector(`[data-task-id="${taskId}"]`);
                 if (taskElement) {
                     taskElement.parentElement.removeChild(taskElement);
@@ -75,8 +76,12 @@ function deleteTask(taskId) {
             } else {
                 console.error("Error deleting task:", response.statusText);
             }
+        })
+        .catch((error) => {
+            console.error("Error deleting task:", error);
         });
 }
+
 
     // Fetch tasks when the page loads
     fetchTasks();
