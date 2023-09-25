@@ -55,3 +55,18 @@ app.post("/tasks", (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
+// API endpoint to delete a task from the database
+app.delete("/tasks/:id", (req, res) => {
+    const taskId = req.params.id;
+    const sql = "DELETE FROM tasks WHERE id = ?";
+    db.query(sql, [taskId], (err, result) => {
+        if (err) {
+            console.error("Error deleting task:", err);
+            res.status(500).send("Error deleting task");
+        } else {
+            res.status(200).send("Task deleted successfully");
+        }
+    });
+});
+
