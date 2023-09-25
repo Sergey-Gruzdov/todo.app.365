@@ -44,17 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
         attachDeleteListener(li);
     }
 
-    // Function to delete a task
-    function deleteTask(taskId) {
-        fetch(`/tasks/${taskId}`, { method: "DELETE" })
-            .then(() => {
-                const taskElement = document.querySelector(`[data-task-id="${taskId}"]`);
-                if (taskElement) {
-                    taskElement.parentElement.removeChild(taskElement);
-                }
-            });
-    }
-
     // Function to attach delete listener to a task
     function attachDeleteListener(li) {
         const deleteButton = li.querySelector(".delete");
